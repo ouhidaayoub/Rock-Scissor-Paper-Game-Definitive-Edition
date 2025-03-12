@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <windows.h>
+#include <stdbool.h>
 
 void displayingWelcomeMessage(){
     printf("\n\n*************************************************\n");
@@ -16,26 +17,26 @@ void displayingWelcomeMessage(){
 }
 
 void displayGameRules(){
-    printf("-----------------------------------------\n");
-    printf("| [ Rock, Paper, Scissors ] Game Rules: |\n");
+    printf("                   -----------------------------------------\n");
+    printf("                   | [ Rock, Paper, Scissors ] Game Rules: |\n");
     printf("------------------------------------------------------------------------------------\n");
-    printf("| 1. Players: The game is typically played between two players.                    |\n|                                                                                  |\n");                                                                                             
+    printf("| 1. Players: The game is typically played between human and machine.              |\n|                                                                                  |\n");                                                                                             
     printf("| 2. Choices: Each player chooses one of the following:                            |\n");                       
     printf("|    - Rock                                                                        |\n");                                                                   
     printf("|    - Paper                                                                       |\n");
     printf("|    - Scissors                                                                    |\n|                                                                                  |\n");
-    printf("| 3. Objective: The goal is to choose a move that defeats your opponent's move.    |\n|   The rules for winning are as follows:                                          |\n");
+    printf("| 3. Objective: The goal is to choose a move that defeats the machine's move.      |\n|   The rules for winning are as follows:                                          |\n");
     printf("|  - Rock beats Scissors (Rock crushes Scissors)                                   |\n");
     printf("|  - Scissors beats Paper (Scissors cut Paper)                                     |\n");
     printf("|  - Paper beats Rock (Paper covers Rock)                                          |\n|                                                                                  |\n");
 
-    printf("| 4. Tie: If both players choose the same move, it is a tie, and no one wins.      |\n|                                                                                  |\n");
+    printf("| 4. Tie: If both player and machine choose the same move, it is a tie, and no one |\n|   wins.                                                                          |\n");
 
     printf("| 5. Outcome:                                                                      |\n");
-    printf("|  - Player 1 wins if their choice beats Player 2's choice.                        |\n");
-    printf("|  - Player 2 wins if their choice beats Player 1's choice.                        |\n");
-    printf("|  - Tie if both players select the same option.                                   |\n");
-    printf("------------------------------------------------------------------------------------\n\n\n");
+    printf("|  - Player wins if their choice beats Machine's choice.                           |\n");
+    printf("|  - Machine wins if their choice beats Player's choice.                           |\n");
+    printf("|  - Tie if both select the same option.                                           |\n");
+    printf("------------------------------------------------------------------------------------\n\n");
 }
 
 int machineRandomChoice(int *rounds, int mostChosenInPrevRounds){
@@ -44,13 +45,13 @@ int machineRandomChoice(int *rounds, int mostChosenInPrevRounds){
             machineChoiceResult = ((rand() % 3)+1);
                 switch(machineChoiceResult){
                     case 1:
-                        printf("I chose number %d --> Rock\n", machineChoiceResult);
+                        printf("I chose number %d --> Rock\n\n", machineChoiceResult);
                             break;
                     case 2:
-                        printf("I chose number %d --> Paper\n", machineChoiceResult);
+                        printf("I chose number %d --> Paper\n\n", machineChoiceResult);
                             break;
                     case 3:
-                        printf("I chose number %d --> Scissors\n", machineChoiceResult);
+                        printf("I chose number %d --> Scissors\n\n", machineChoiceResult);
                             break;
                 }
         }
@@ -58,13 +59,13 @@ int machineRandomChoice(int *rounds, int mostChosenInPrevRounds){
             machineChoiceResult = mostChosenInPrevRounds;
                 switch(machineChoiceResult){
                     case 1:
-                        printf("I chose number %d --> Rock\n", machineChoiceResult);
+                        printf("I chose number %d --> Rock\n\n", machineChoiceResult);
                             break;
                     case 2:
-                        printf("I chose number %d --> Paper\n", machineChoiceResult);
+                        printf("I chose number %d --> Paper\n\n", machineChoiceResult);
                             break;
                     case 3:
-                        printf("I chose number %d --> Scissors\n", machineChoiceResult);
+                        printf("I chose number %d --> Scissors\n\n", machineChoiceResult);
                             break;
                 }
         }
@@ -85,7 +86,7 @@ void whatIsMachineChoiceEqualTo(int machineChoiceResult){
         printf(" ________\n");
         printf("| ~~~~~~ |\n");
         printf("| ~~~~~~ |\n");
-        printf("| ~~~~~~ | ---> PAPER \n");
+        printf("| ~~~~~~ | ---> PAPER\n");
         printf("|________|\n");
         break;
         case 3:
@@ -111,7 +112,7 @@ int playerManualChoice(){
         printf("\n");
         printf("| Type [3] if you wanna choose SCISSORS  |\n");
         printf("------------------------------------------");
-        printf("\n");
+        printf("\n\n");
 
             printf("My choice will be: ");
             scanf("%d", &playerManualChoiceResult);
@@ -123,24 +124,23 @@ int playerChoicesCounter(int *rockCounter, int *paperCounter,int *scissorsCounte
     switch(playerManualChoiceResult){
         case 1:
             (*rockCounter)++;
-                printf("Rock counter based on this game in this round = %d\n", *rockCounter);
+                printf(" - Rock counter based on this game in this round = %d\n", *rockCounter);
                     break;
         case 2:
             (*paperCounter)++;
-                printf("Paper counter based on this game in this round = %d\n", *paperCounter);
+                printf(" - Paper counter based on this game in this round = %d\n", *paperCounter);
                         break;
         case 3:
             (*scissorsCounter)++;
-                printf("Scissors counter based on this game in this round = %d\n", *scissorsCounter);
+                printf(" - Scissors counter based on this game in this round = %d\n", *scissorsCounter);
                     break;
     }
 
-    printf("\n");
-        printf("Again:\n");
-            printf("Rock counter = %d\n", *rockCounter);
-            printf("Paper counter = %d\n", *paperCounter);
-            printf("Scissors counter = %d\n", *scissorsCounter);
-    printf("\n");
+        printf(" - Total counter of all choices based on this game in this round:\n");
+            printf("------> Rock counter = %d\n", *rockCounter);
+            printf("------> Paper counter = %d\n", *paperCounter);
+            printf("------> Scissors counter = %d\n", *scissorsCounter);
+                printf("\n");
 }
 
 
@@ -175,22 +175,61 @@ void whatPlayerManualChoiceReferTo(int playerManualChoiceResult){
 double mostChosenChoiceByPlayer(int rockCounter, int paperCounter, int scissorsCounter, int consumedGames){
     int index;
     double ChoiceAverage[3];
-        ChoiceAverage[1] = rockCounter/consumedGames;
-        printf("ChoiceAverage[1] = %.2lf\n");
-        ChoiceAverage[2] = paperCounter/consumedGames;
-        printf("ChoiceAverage[2] = %.2lf\n");
-        ChoiceAverage[3] = scissorsCounter/consumedGames;
-        printf("ChoiceAverage[3] = %.2lf\n");
-            int i;
-                double mostChosenChoiceByPlayerResult = 0.00;
-                    for ( i=1; i<=3; i++ ){
-                        if( (ChoiceAverage[i] > mostChosenChoiceByPlayerResult)){
-                            mostChosenChoiceByPlayerResult = ChoiceAverage[i];
-                                printf("\nThe most chosen choice is number: %d\n", i);
-                                index = i;
-                        }
+    bool itsDefined = false;
+        for (int i=1; i<=3; i++){
+            if((rockCounter > 0) || (paperCounter > 0) || (scissorsCounter > 0)){
+                switch (i)
+                {
+                case 1:
+                    if((rockCounter > 0)){
+                        ChoiceAverage[1] = ((double)rockCounter)/((double)consumedGames);
+                            itsDefined = true;
+                                printf("ChoiceAverage[1] = %.6lf\n", ChoiceAverage[1]);
                     }
-    printf("\nThe most chosen choice is number: %d\n", index);
+                    else{
+                        printf("ChoiceAverage[1] = Not defined yet cause it doesn't chosen.\n");
+                    }
+                    break;
+                case 2:
+                    if((paperCounter > 0)){
+                        ChoiceAverage[2] = ((double)paperCounter)/((double)consumedGames);
+                            itsDefined = true;
+                                printf("ChoiceAverage[2] = %.6lf\n", ChoiceAverage[2]);
+                    }
+                    else{
+                        printf("ChoiceAverage[2] = Not defined yet cause it doesn't chosen.\n");
+                    }
+                    break;
+                case 3:
+                    if((scissorsCounter > 0)){
+                        ChoiceAverage[3] = ((double)scissorsCounter)/((double)consumedGames);
+                            itsDefined = true;
+                                printf("ChoiceAverage[3] = %.6lf\n", ChoiceAverage[3]);
+                    }
+                    else{
+                        printf("ChoiceAverage[3] = Not defined yet cause it doesn't chosen.\n");
+                    }
+                    break;
+                }
+            }
+        }
+        int i;
+            double mostChosenChoiceByPlayerResult = 0.00;
+            while(!itsDefined)
+            {
+                for ( i=1; i<=3; i++ ){
+                    if( (ChoiceAverage[i] >= mostChosenChoiceByPlayerResult)){
+                        mostChosenChoiceByPlayerResult = ChoiceAverage[i];
+                            printf("\nThe most chosen choice is number: %d\n", i);
+                            index = i;
+                    }
+                    /*else{
+                        printf("\nThe most chosen choice is number: %d\n", index);
+                    }*/
+                }
+                printf("\nThe most chosen choice is number: %d\n", index);
+            }
+            
     return index;
 
 }
@@ -215,7 +254,6 @@ void resultComparisonComment(int resultComparisonCommentV){
             printf("\n");
                 break;
         case 0:
-            printf("\n");
             printf("TIE! it's okay, next round you will lose for sure!\n");
             printf("\n");
                 break;
@@ -246,11 +284,13 @@ void scoreBarDisplay(int *machineCounter, int *playerCounter){
     printf("\n");
 }
 
-int wannaPlayAgain(){
-    printf("\n");
-    printf("Would you wanna move the next");
-    printf("\n");
+void wannaPlayAgain(int *playAgainChoiceP) {
+    int playAgainChoice;
+    printf("Enter: ");
+    scanf("%d", &playAgainChoice);
+    *playAgainChoiceP = playAgainChoice;
 }
+
 
 int main(){
 
@@ -260,28 +300,35 @@ int main(){
 
     int rockCountermain = 0, paperCountermain = 0,scissorsCountermain = 0;
 
+    //This Two variables for handle the score bar result.
     int machineCountermain = 0;
     int playerCountermain = 0;
-    int biggestCounter = 0;
 
+    //First variable for the total initial games number (decreased in each iteration from the rounds)
+    //Second variable for the current played games number (increased in each iteration from the games)
     int totalGames = 16;
     int consumedGames = 0;
 
+    //Used as parameter in the "mostChosenChoiceByPlayer()" Function to train the machine based on the multiple user inputs
     int mostChosenChoiceByPlayerMAIN;
 
-
+    int playAgainChoiceMAIN = 1;
+    while(playAgainChoiceMAIN == 1){
+        // Rounds loop (3)
         for (int round=1; round<=3; round++){
+            // reduce the total initial games number in each iteration
             totalGames -= 5;
+                // Games loop (11 then 6 then 1)
                 for (int i=1; i<=totalGames; i++){
                     consumedGames++;
-                    printf("\nLet's start Match %d Round %d\n", i, round);
 
-                    int machineChoiceResultMAIN;
+                    printf("Let's start Match %d Round %d\n", i, round);
+                    printf("Consumed Games until now = %d\n\n", consumedGames);
 
-                    machineChoiceResultMAIN = machineRandomChoice(&round, mostChosenChoiceByPlayerMAIN);
+                    int machineChoiceResultMAIN = machineRandomChoice(&round, mostChosenChoiceByPlayerMAIN);
             
-                    int playerManualChoiceResultMAIN;
-                    playerManualChoiceResultMAIN = playerManualChoice(&rockCountermain, &paperCountermain, &scissorsCountermain);
+                    int playerManualChoiceResultMAIN = playerManualChoice(&rockCountermain, &paperCountermain, &scissorsCountermain);
+                    playerChoicesCounter(&rockCountermain, &paperCountermain, &scissorsCountermain, playerManualChoiceResultMAIN);
 
                     mostChosenChoiceByPlayerMAIN = mostChosenChoiceByPlayer(rockCountermain, paperCountermain, scissorsCountermain, consumedGames);
 
@@ -298,18 +345,17 @@ int main(){
 
                     scoreBar(rseultOfDraw, &machineCountermain, &playerCountermain);
 
-                    playerChoicesCounter(&rockCountermain, &paperCountermain, &scissorsCountermain, playerManualChoiceResultMAIN);
                     
-                    mostChosenChoiceByPlayer(rockCountermain, paperCountermain, scissorsCountermain, consumedGames);
-
+                    
                     scoreBarDisplay(&machineCountermain, &playerCountermain);
 
-                    printf("\n\nConsumed Games until now = %d\n\n", consumedGames);
-
+                    
+                    
                 }
-            
+                wannaPlayAgain(&playAgainChoiceMAIN);
         }
+        
 
+    }
     return 0;
-    
 }
