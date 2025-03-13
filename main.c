@@ -285,10 +285,20 @@ void scoreBarDisplay(int *machineCounter, int *playerCounter){
 }
 
 void wannaPlayAgain(int *playAgainChoiceP) {
-    int playAgainChoice;
-    printf("Enter: ");
-    scanf("%d", &playAgainChoice);
-    *playAgainChoiceP = playAgainChoice;
+    char playerAnswer[5];
+    printf("\n\nGame over\n");
+    printf("If you wanna play again type \"Yes\" Otherwise type \"No\"\n");
+    scanf("%s", playerAnswer);
+    if(playerAnswer == "Yes"){
+        *playAgainChoiceP = 1;
+    }
+    if(playerAnswer == "No"){
+        *playAgainChoiceP = 0;
+    }
+    else{
+        printf("Wrong anwser. You must answer by \"Yes\" or \"No\" as they are typed\n");
+    }
+
 }
 
 
@@ -331,27 +341,17 @@ int main(){
                 
                         int playerManualChoiceResultMAIN = playerManualChoice(&rockCountermain, &paperCountermain, &scissorsCountermain);
                         playerChoicesCounter(&rockCountermain, &paperCountermain, &scissorsCountermain, playerManualChoiceResultMAIN);
-
                         mostChosenChoiceByPlayerMAIN = mostChosenChoiceByPlayer(rockCountermain, paperCountermain, scissorsCountermain, consumedGames);
-
                         whatPlayerManualChoiceReferTo(playerManualChoiceResultMAIN);
                 
                         whatIsMachineChoiceEqualTo(machineChoiceResultMAIN);
                 
                         int rseultOfDraw;
                         rseultOfDraw = resultComparison(machineChoiceResultMAIN, playerManualChoiceResultMAIN);
-                        
-
-
                         resultComparisonComment(rseultOfDraw);
 
                         scoreBar(rseultOfDraw, &machineCountermain, &playerCountermain);
-
-                        
-                        
                         scoreBarDisplay(&machineCountermain, &playerCountermain);
-
-                        
                         
                     }
             }
