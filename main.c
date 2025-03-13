@@ -295,67 +295,67 @@ void wannaPlayAgain(int *playAgainChoiceP) {
 int main(){
 
     srand(time(NULL));
-    displayingWelcomeMessage();
-    displayGameRules();
-
-    int rockCountermain = 0, paperCountermain = 0,scissorsCountermain = 0;
-
-    //This Two variables for handle the score bar result.
-    int machineCountermain = 0;
-    int playerCountermain = 0;
-
-    //First variable for the total initial games number (decreased in each iteration from the rounds)
-    //Second variable for the current played games number (increased in each iteration from the games)
-    int totalGames = 16;
-    int consumedGames = 0;
-
-    //Used as parameter in the "mostChosenChoiceByPlayer()" Function to train the machine based on the multiple user inputs
-    int mostChosenChoiceByPlayerMAIN;
-
     int playAgainChoiceMAIN = 1;
-    while(playAgainChoiceMAIN == 1){
-        // Rounds loop (3)
-        for (int round=1; round<=3; round++){
-            // reduce the total initial games number in each iteration
-            totalGames -= 5;
-                // Games loop (11 then 6 then 1)
-                for (int i=1; i<=totalGames; i++){
-                    consumedGames++;
 
-                    printf("Let's start Match %d Round %d\n", i, round);
-                    printf("Consumed Games until now = %d\n\n", consumedGames);
+    
+    while(playAgainChoiceMAIN){
 
-                    int machineChoiceResultMAIN = machineRandomChoice(&round, mostChosenChoiceByPlayerMAIN);
-            
-                    int playerManualChoiceResultMAIN = playerManualChoice(&rockCountermain, &paperCountermain, &scissorsCountermain);
-                    playerChoicesCounter(&rockCountermain, &paperCountermain, &scissorsCountermain, playerManualChoiceResultMAIN);
-
-                    mostChosenChoiceByPlayerMAIN = mostChosenChoiceByPlayer(rockCountermain, paperCountermain, scissorsCountermain, consumedGames);
-
-                    whatPlayerManualChoiceReferTo(playerManualChoiceResultMAIN);
-            
-                    whatIsMachineChoiceEqualTo(machineChoiceResultMAIN);
-            
-                    int rseultOfDraw;
-                    rseultOfDraw = resultComparison(machineChoiceResultMAIN, playerManualChoiceResultMAIN);
-                    
-
-
-                    resultComparisonComment(rseultOfDraw);
-
-                    scoreBar(rseultOfDraw, &machineCountermain, &playerCountermain);
-
-                    
-                    
-                    scoreBarDisplay(&machineCountermain, &playerCountermain);
-
-                    
-                    
-                }
-                wannaPlayAgain(&playAgainChoiceMAIN);
-        }
+        displayingWelcomeMessage();
+        displayGameRules();
         
+        int rockCountermain = 0, paperCountermain = 0,scissorsCountermain = 0;
+    
+        //This Two variables for handle the score bar result.
+        int machineCountermain = 0;
+        int playerCountermain = 0;
+    
+        //First variable for the total initial games number (decreased in each iteration from the rounds)
+        //Second variable for the current played games number (increased in each iteration from the games)
+        int totalGames = 16;
+        int consumedGames = 0;
+    
+        //Used as parameter in the "mostChosenChoiceByPlayer()" Function to train the machine based on the multiple user inputs
+        int mostChosenChoiceByPlayerMAIN;
+            // Rounds loop (3)
+            for (int round=1; round<=3; round++){
+                // reduce the total initial games number in each iteration
+                totalGames -= 5;
+                    // Games loop (11 then 6 then 1)
+                    for (int i=1; i<=totalGames; i++){
+                        consumedGames++;
 
+                        printf("Let's start Match %d Round %d\n", i, round);
+                        printf("Consumed Games until now = %d\n\n", consumedGames);
+
+                        int machineChoiceResultMAIN = machineRandomChoice(&round, mostChosenChoiceByPlayerMAIN);
+                
+                        int playerManualChoiceResultMAIN = playerManualChoice(&rockCountermain, &paperCountermain, &scissorsCountermain);
+                        playerChoicesCounter(&rockCountermain, &paperCountermain, &scissorsCountermain, playerManualChoiceResultMAIN);
+
+                        mostChosenChoiceByPlayerMAIN = mostChosenChoiceByPlayer(rockCountermain, paperCountermain, scissorsCountermain, consumedGames);
+
+                        whatPlayerManualChoiceReferTo(playerManualChoiceResultMAIN);
+                
+                        whatIsMachineChoiceEqualTo(machineChoiceResultMAIN);
+                
+                        int rseultOfDraw;
+                        rseultOfDraw = resultComparison(machineChoiceResultMAIN, playerManualChoiceResultMAIN);
+                        
+
+
+                        resultComparisonComment(rseultOfDraw);
+
+                        scoreBar(rseultOfDraw, &machineCountermain, &playerCountermain);
+
+                        
+                        
+                        scoreBarDisplay(&machineCountermain, &playerCountermain);
+
+                        
+                        
+                    }
+            }
+        wannaPlayAgain(&playAgainChoiceMAIN);
     }
     return 0;
 }
