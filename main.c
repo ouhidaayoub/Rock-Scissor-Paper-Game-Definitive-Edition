@@ -102,22 +102,72 @@ void whatIsMachineChoiceEqualTo(int machineChoiceResult){
 
 int playerManualChoice(){
     int playerManualChoiceResult;
-        printf("Choose one from above:\n");
-        printf("------------------------------------------");
-        printf("\n");
-        printf("| Type [1] if you wanna choose ROCK      |\n");
-        printf("------------------------------------------");
-        printf("\n");
-        printf("| Type [2] if you wanna choose PAPER     |\n");
-        printf("------------------------------------------");
-        printf("\n");
-        printf("| Type [3] if you wanna choose SCISSORS  |\n");
-        printf("------------------------------------------");
-        printf("\n\n");
+    int userInputAttemps = 0;
+        do{
+            if(userInputAttemps == 0){
+                printf("Choose one from above:\n");
+                printf("------------------------------------------");
+                printf("\n");
+                printf("| Type [1] if you wanna choose ROCK      |\n");
+                printf("------------------------------------------");
+                printf("\n");
+                printf("| Type [2] if you wanna choose PAPER     |\n");
+                printf("------------------------------------------");
+                printf("\n");
+                printf("| Type [3] if you wanna choose SCISSORS  |\n");
+                printf("------------------------------------------");
+                printf("\n\n");
+                    printf("My choice will be: ");
+                    scanf("%d", &playerManualChoiceResult);
+            }
 
-            printf("My choice will be: ");
-            scanf("%d", &playerManualChoiceResult);
-
+            if( (userInputAttemps > 0) ){
+                Beep(180, 450);
+                if( ((playerManualChoiceResult != 1) || (playerManualChoiceResult != 2) || (playerManualChoiceResult != 3)) ){
+                    char userInput[10];
+                    do{
+                        printf("Your input doesn't match any of the available choices, enter again either [1] or [2] [3]\n Or type \"Table\" to list the choices and their indexes again to you:");
+                        scanf("%s", &userInput);
+                        if((strcmp(userInput, "1") == 0)){
+                            playerManualChoiceResult = 1;
+                            break;
+                        }
+                        if((strcmp(userInput, "2") == 0)){
+                            playerManualChoiceResult = 2;
+                            break;
+                        }
+                        if((strcmp(userInput, "3") == 0)){
+                            playerManualChoiceResult = 3;
+                            break;
+                        }
+                        if((strcmp(userInput, "Table") == 0)){
+                            printf("Choose one from above:\n");
+                            printf("------------------------------------------");
+                            printf("\n");
+                            printf("| Type [1] if you wanna choose ROCK      |\n");
+                            printf("------------------------------------------");
+                            printf("\n");
+                            printf("| Type [2] if you wanna choose PAPER     |\n");
+                            printf("------------------------------------------");
+                            printf("\n");
+                            printf("| Type [3] if you wanna choose SCISSORS  |\n");
+                            printf("------------------------------------------");
+                            printf("\n\n");
+                            printf("My choice will be: ");
+                            scanf("%d", &playerManualChoiceResult);
+                            break;
+                        }
+                        else{
+                            Beep(180, 450);
+                            printf("Bro? what's that? Input something correct please: ");
+                            scanf("%s", &userInput);
+                        }
+                    }while( ((strcmp(userInput, "1") == 0)) && ((strcmp(userInput, "2") == 0)) && ((strcmp(userInput, "3") == 0)) && ((strcmp(userInput, "Table") == 0)) );
+                }
+            }
+            printf("\n");
+            userInputAttemps++;
+        }while((playerManualChoiceResult != 1) && (playerManualChoiceResult != 2) && (playerManualChoiceResult != 3));
     return playerManualChoiceResult;
 }
 
