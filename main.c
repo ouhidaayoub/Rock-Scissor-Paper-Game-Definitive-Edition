@@ -3,6 +3,7 @@
 #include <time.h>
 #include <windows.h>
 #include <stdbool.h>
+#include <string.h>
 
 void displayingWelcomeMessage(){
     printf("\n\n*************************************************\n");
@@ -286,19 +287,40 @@ void scoreBarDisplay(int *machineCounter, int *playerCounter){
 
 void wannaPlayAgain(int *playAgainChoiceP) {
     char playerAnswer[5];
-    printf("\n\nGame over\n");
-    printf("If you wanna play again type \"Yes\" Otherwise type \"No\"\n");
-    scanf("%s", playerAnswer);
-    if(playerAnswer == "Yes"){
-        *playAgainChoiceP = 1;
-    }
-    if(playerAnswer == "No"){
-        *playAgainChoiceP = 0;
-    }
-    else{
-        printf("Wrong anwser. You must answer by \"Yes\" or \"No\" as they are typed\n");
-    }
-
+    int counter = 0;
+    do{
+        if(counter == 0){
+            printf("\n\nGame over\n");
+            printf("If you wanna play again type \"Yes\" Otherwise type \"No\"\n");
+            scanf("%s", playerAnswer);
+                if(strcmp(playerAnswer, "Yes") == 0){
+                    printf("Correct [%s]", playerAnswer);
+                    *playAgainChoiceP = 1;
+                    break;
+                }
+                else if(strcmp(playerAnswer, "No") == 0){
+                    printf("Wrong [%s]", playerAnswer);
+                    *playAgainChoiceP = 0;
+                    break;
+                }
+        }
+        if( (counter > 0) && ((strcmp(playerAnswer, "Yes") != 0) || (strcmp(playerAnswer, "No") != 0)) ){
+            printf("The fuck is that? [%s]", playerAnswer);
+            printf("Wrong anwser. You must answer by \"Yes\" or \"No\" as they are typed:");
+            scanf("%s", playerAnswer);
+                if(strcmp(playerAnswer, "Yes") == 0){
+                    printf("Correct [%s]", playerAnswer);
+                    *playAgainChoiceP = 1;
+                    break;
+                }
+                else if(strcmp(playerAnswer, "No") == 0){
+                    printf("Wrong [%s]", playerAnswer);
+                    *playAgainChoiceP = 0;
+                    break;
+                }
+        }
+        counter++;
+    }while((strcmp(playerAnswer, "Yes") != 0) || (strcmp(playerAnswer, "No") != 0));
 }
 
 
