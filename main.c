@@ -229,8 +229,7 @@ double mostChosenChoiceByPlayer(int rockCounter, int paperCounter, int scissorsC
     bool itsDefined = false;
         for (int i=1; i<=3; i++){
             if((rockCounter > 0) || (paperCounter > 0) || (scissorsCounter > 0)){
-                switch (i)
-                {
+                switch (i){
                 case 1:
                     if((rockCounter > 0)){
                         ChoiceAverage[1] = ((double)rockCounter)/((double)consumedGames);
@@ -239,6 +238,7 @@ double mostChosenChoiceByPlayer(int rockCounter, int paperCounter, int scissorsC
                     }
                     else{
                         printf("ChoiceAverage[1] = Not defined yet cause it doesn't chosen.\n");
+                        itsDefined = false;
                     }
                     break;
                 case 2:
@@ -249,6 +249,7 @@ double mostChosenChoiceByPlayer(int rockCounter, int paperCounter, int scissorsC
                     }
                     else{
                         printf("ChoiceAverage[2] = Not defined yet cause it doesn't chosen.\n");
+                        itsDefined = false;
                     }
                     break;
                 case 3:
@@ -259,28 +260,26 @@ double mostChosenChoiceByPlayer(int rockCounter, int paperCounter, int scissorsC
                     }
                     else{
                         printf("ChoiceAverage[3] = Not defined yet cause it doesn't chosen.\n");
+                        itsDefined = false;
                     }
                     break;
                 }
             }
         }
         int i;
-            double mostChosenChoiceByPlayerResult = 0.00;
+        double mostChosenChoiceByPlayerResult = 0.00;
             while(!itsDefined)
             {
                 for ( i=1; i<=3; i++ ){
-                    if( (ChoiceAverage[i] >= mostChosenChoiceByPlayerResult)){
+                    if( (ChoiceAverage[i] > mostChosenChoiceByPlayerResult)){
                         mostChosenChoiceByPlayerResult = ChoiceAverage[i];
-                            printf("\nThe most chosen choice is number: %d\n", i);
+                            printf("\nThe most chosen choice is number: %d", i);
                             index = i;
                     }
-                    /*else{
-                        printf("\nThe most chosen choice is number: %d\n", index);
-                    }*/
                 }
-                printf("\nThe most chosen choice is number: %d\n", index);
+                break;
             }
-            
+            printf("\n\nThe most chosen choice is number: %d\n", index);
     return index;
 
 }
