@@ -56,7 +56,7 @@ int machineRandomChoice(int *rounds, int mostChosenInPrevRounds){
                             break;
                 }
         }
-        if(((*rounds) > 1)){
+        else if(((*rounds) > 1)){
             machineChoiceResult = mostChosenInPrevRounds;
                 switch(machineChoiceResult){
                     case 1:
@@ -73,7 +73,7 @@ int machineRandomChoice(int *rounds, int mostChosenInPrevRounds){
     return machineChoiceResult;
 }
 
-void whatIsMachineChoiceEqualTo(int machineChoiceResult){
+void whatIsMachineChoiceRefeerTo(int machineChoiceResult){
     switch(machineChoiceResult){
         case 1:
         printf("\nI choose ROCK\n");
@@ -415,7 +415,7 @@ int main(){
                         mostChosenChoiceByPlayerMAIN = mostChosenChoiceByPlayer(rockCountermain, paperCountermain, scissorsCountermain, consumedGames);
                         whatPlayerManualChoiceReferTo(playerManualChoiceResultMAIN);
                 
-                        whatIsMachineChoiceEqualTo(machineChoiceResultMAIN);
+                        whatIsMachineChoiceRefeerTo(machineChoiceResultMAIN);
                 
                         int rseultOfDraw;
                         rseultOfDraw = resultComparison(machineChoiceResultMAIN, playerManualChoiceResultMAIN);
