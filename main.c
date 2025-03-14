@@ -122,11 +122,11 @@ int playerManualChoice(){
             }
 
             if( (userInputAttemps > 0) ){
-                Beep(180, 450);
+                Beep(180, 300);
                 if( ((playerManualChoiceResult != 1) || (playerManualChoiceResult != 2) || (playerManualChoiceResult != 3)) ){
                     char userInput[10];
                     do{
-                        printf("Your input doesn't match any of the available choices, enter again either [1] or [2] [3]\n Or type \"Table\" to list the choices and their indexes again to you:");
+                        printf("Your input doesn't match any of the available choices, enter again either [1] or [2] [3]\nOr type \"Table\" to list the choices and their indexes again to you:");
                         scanf("%s", &userInput);
                         if((strcmp(userInput, "1") == 0)){
                             playerManualChoiceResult = 1;
@@ -158,7 +158,7 @@ int playerManualChoice(){
                             break;
                         }
                         else{
-                            Beep(180, 450);
+                            Beep(180, 300);
                             printf("Bro? what's that? Input something correct please: ");
                             scanf("%s", &userInput);
                         }
